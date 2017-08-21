@@ -1,13 +1,8 @@
 package org.linkedgeodesy.jenaext.run;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
 import org.linkedgeodesy.jenaext.config.POM_jenaext;
 import org.linkedgeodesy.jenaext.log.Logging;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +10,8 @@ import org.apache.jena.riot.Lang;
 import org.linkedgeodesy.jenaext.model.JenaModel;
 
 /**
- * main class
+ * main class for running
  *
- * @author thiery
  */
 public class Main {
 
@@ -29,23 +23,18 @@ public class Main {
      * @throws SQLException
      */
     public static void main(String[] args) throws IOException, SQLException {
-        String libinfo = "";
         List<String> o = new ArrayList();
         try {
             // get POM Info
-            libinfo = POM_jenaext.getInfo().toJSONString();
-            System.out.println(libinfo);
-            o.add(libinfo);
+            o.add(POM_jenaext.getInfo().toJSONString());
             // read in turtle, write json-ld, read in json-ld, write N-Triples
             String turtle = "<http://example.org/#spiderman> <http://www.perceive.net/schemas/relationship/enemyOf> <http://example.org/#green-goblin> ; <http://xmlns.com/foaf/0.1/name> \"Spiderman\" .";
             JenaModel jm = new JenaModel();
             JenaModel jm2 = new JenaModel();
             jm.readRDF(turtle, Lang.TURTLE);
-            System.out.println(jm.getModel("JSON-LD"));
             o.add(jm.getModel("JSON-LD"));
             String turtleld = jm.getModel("JSON-LD");
             jm2.readRDF(turtleld, Lang.JSONLD);
-            System.out.println(jm2.getModel());
             o.add(jm2.getModel());
             // test with ls json-ld
             JenaModel jm3 = new JenaModel();
@@ -127,27 +116,13 @@ public class Main {
                     + "  }\n"
                     + "}";
             jm3.readJSONLD(ld);
-            System.out.println(jm3.getModel("N-Triples"));
             o.add(jm3.getModel("N-Triples"));
-            // write results to file
-            try {
-                File file = new File("main.txt");
-                String path = file.getCanonicalPath();
-                File filePath = new File(path);
-                filePath.delete();
-                try (Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF8"))) {
-                    for (Object item : o) {
-                        String tmp = (String) item;
-                        out.append(tmp).append("\r\n");
-                    }
-                    out.flush();
-                }
-            } catch (IOException e) {
-                System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.jenaext.run.Main"));
-            }
+            // write output to file
+            FileOutput.writeFile(o);
         } catch (Exception e) {
-            libinfo = Logging.getMessageJSON(e, "org.linkedgeodesy.jenaext.run.Main");
+            o.add(Logging.getMessageJSON(e, "org.linkedgeodesy.jenaext.run.Main"));
             System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.jenaext.run.Main"));
+            FileOutput.writeFile(o);
         }
     }
 
