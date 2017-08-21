@@ -49,7 +49,7 @@ For loading your prefixes please add the [prefixes.csv](https://github.com/linke
 
 ## Dependency Information
 
-*latest stabile version: 60bbd0639c*
+*latest stabile version: v0.1*
 
 **Apache Maven** *via jitpack.io*
 
