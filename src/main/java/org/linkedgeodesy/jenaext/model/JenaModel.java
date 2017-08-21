@@ -9,11 +9,13 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Scanner;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
 import org.json.simple.JSONObject;
@@ -28,8 +30,9 @@ public class JenaModel {
 
     private Model model;
 
-    public JenaModel() {
+    public JenaModel() throws JenaModelException {
         model = ModelFactory.createDefaultModel();
+        setPrefixes();
     }
 
     public void readRDF(String rdf, Lang format) throws JenaModelException {
@@ -158,6 +161,21 @@ public class JenaModel {
             JSONObject context = (JSONObject) data.get("@context");
             return context;
         } catch (Exception e) {
+            throw new JenaModelException(e.getMessage());
+        }
+    }
+
+    private void setPrefixes() throws JenaModelException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("prefixes.csv").getFile());
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] split = line.split(",");
+                model.setNsPrefix(split[0], split[1]);
+            }
+            scanner.close();
+        } catch (IOException e) {
             throw new JenaModelException(e.getMessage());
         }
     }
