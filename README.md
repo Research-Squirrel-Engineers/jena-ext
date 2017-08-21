@@ -39,7 +39,7 @@ Running `mvn test` will run the unit tests with `JUnit`.
 
 ## Documentation
 
-Look at [GitHub Pages](https://linkedgeodesy.github.io/jenaext/) for the latest developer documentation like `maven` and `javadoc`.
+Look at [GitHub Pages](https://linkedgeodesy.github.io/jena-ext/) for the latest developer documentation like `maven` and `javadoc`.
 
 ## Developer Hints
 
