@@ -117,6 +117,9 @@ public class Main {
                     + "}";
             jm3.readJSONLD(ld);
             o.add(jm3.getModel("N-Triples"));
+            // context json objects
+            o.add(JenaModel.getJSONLDContextByURL("https://raw.githubusercontent.com/geojson/geojson-ld/gh-pages/geojson-context.jsonld").toJSONString());
+            o.add(JenaModel.getJSONLDContextByURL("https://raw.githubusercontent.com/florianthiery/geojson-ld-lg/master/geojson-context-lg.jsonld").toJSONString());
             // write output to file
             FileOutput.writeFile(o);
         } catch (Exception e) {

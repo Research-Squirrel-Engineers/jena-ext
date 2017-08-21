@@ -6,11 +6,18 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.linkedgeodesy.jenaext.log.JenaModelException;
 
 /**
@@ -32,7 +39,7 @@ public class JenaModel {
             throw new JenaModelException(e.getMessage());
         }
     }
-    
+
     public void readJSONLD(String jsonld) throws JenaModelException {
         try {
             RDFDataMgr.read(model, new ByteArrayInputStream(jsonld.getBytes()), null, Lang.JSONLD);
@@ -119,13 +126,37 @@ public class JenaModel {
             throw new JenaModelException(e.getMessage());
         }
     }
-    
+
     public String getModelAsJSONLD() throws UnsupportedEncodingException, JenaModelException {
         try {
             JenaJSONLD.init();
             ByteArrayOutputStream o = new ByteArrayOutputStream();
             model.write(o, "JSON-LD");
             return o.toString("UTF-8");
+        } catch (Exception e) {
+            throw new JenaModelException(e.getMessage());
+        }
+    }
+
+    public static JSONObject getJSONLDContextByURL(String url) throws IOException, JenaModelException {
+        try {
+            // read GeoJSON-LD Context
+            JSONObject data = new JSONObject();
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            if (con.getResponseCode() == 200) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+                String inputLine;
+                StringBuilder response = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                data = (JSONObject) new JSONParser().parse(response.toString());
+            }
+            JSONObject context = (JSONObject) data.get("@context");
+            return context;
         } catch (Exception e) {
             throw new JenaModelException(e.getMessage());
         }
