@@ -2,7 +2,7 @@
 
 An extension library for Apache Jena
 
-[![build](https://travis-ci.org/linkedgeodesy/javaext.svg?branch=master)](https://travis-ci.org/linkedgeodesy/javaext) [![version](https://img.shields.io/badge/version-1.0--SNAPSHOT-green.svg)](#)  [![java](https://img.shields.io/badge/jdk-1.8-red.svg)](#)  [![maven](https://img.shields.io/badge/maven-3.5.0-orange.svg)](#) [![output](https://img.shields.io/badge/output-jar-red.svg)](#)  [![docs](https://img.shields.io/badge/apidoc-n/a-blue.svg)](https://rgzm.github.io/foolib/)  [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/RGZM/foolib/blob/master/LICENSE)
+[![build](https://travis-ci.org/linkedgeodesy/java-ext.svg?branch=master)](https://travis-ci.org/linkedgeodesy/jena-ext) [![version](https://img.shields.io/badge/version-1.0--SNAPSHOT-green.svg)](#)  [![java](https://img.shields.io/badge/jdk-1.8-red.svg)](#)  [![maven](https://img.shields.io/badge/maven-3.5.0-orange.svg)](#) [![output](https://img.shields.io/badge/output-jar-red.svg)](#)  [![docs](https://img.shields.io/badge/apidoc-n/a-blue.svg)](https://rgzm.github.io/foolib/)  [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/RGZM/foolib/blob/master/LICENSE)
 
 ## Prerequisites
 
