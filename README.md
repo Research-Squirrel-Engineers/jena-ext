@@ -45,6 +45,56 @@ Look at [GitHub Pages](https://linkedgeodesy.github.io/jenaext/) for the latest 
 
 Look at [Gist](https://gist.github.com/florianthiery/0f8c0c015555939c96eb13428bbf1cd4) hints for `Configurations for JAVA projects using Maven`.
 
+## Dependency Information
+
+*latest stabile version: 60bbd0639c*
+
+**Apache Maven** *via jitpack.io*
+
+```xml
+<repositories>
+  <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+  </repository>
+</repositories>
+
+<dependency>
+  <groupId>com.github.linkedgeodesy</groupId>
+  <artifactId>jena-ext</artifactId>
+  <version>${version}</version>
+</dependency>
+```
+
+**gradle** *via jitpack.io*
+
+```
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+    compile 'com.github.linkedgeodesy:jena-ext:${version}'
+}
+```
+
+**sbt** *via jitpack.io*
+
+```
+resolvers += "jitpack" at "https://jitpack.io"
+libraryDependencies += "com.github.linkedgeodesy" % "jena-ext" % "${version}"
+```
+
+**leiningen** *via jitpack.io*
+
+```
+:repositories [["jitpack" "https://jitpack.io"]]   
+:dependencies [[com.github.linkedgeodesy/jena-ext "${version}"]]
+```
+
 ## Repo Developers
 
 Florian Thiery M.Sc. (i3mainz, RGZM)
