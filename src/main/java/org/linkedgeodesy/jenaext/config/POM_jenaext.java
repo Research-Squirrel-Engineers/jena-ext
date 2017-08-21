@@ -5,14 +5,14 @@ import org.json.simple.JSONObject;
 
 /**
  * Class for POM details
- * @author thiery
  */
 public class POM_jenaext {
-    
+
     /**
      * get POM info as JSON
+     *
      * @return pom JSON
-     * @throws IOException 
+     * @throws IOException
      */
     public static JSONObject getInfo() throws IOException {
         JSONObject outObj = new JSONObject();

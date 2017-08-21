@@ -9,10 +9,18 @@ import java.io.Writer;
 import java.util.List;
 import org.linkedgeodesy.jenaext.log.Logging;
 
+/**
+ * Class to write an output file
+ */
 public class FileOutput {
 
     private static final String fileName = "main.txt";
 
+    /**
+     * write file from String list
+     *
+     * @param o
+     */
     public static void writeFile(List<String> o) {
         try {
             File file = new File(fileName);

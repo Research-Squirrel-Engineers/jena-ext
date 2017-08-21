@@ -24,17 +24,28 @@ import org.linkedgeodesy.jenaext.log.JenaModelException;
 
 /**
  * CLASS for set up a JenaModel graph and export it
- *
  */
 public class JenaModel {
 
     private Model model;
 
+    /**
+     * init Jena Model Object
+     *
+     * @throws JenaModelException
+     */
     public JenaModel() throws JenaModelException {
         model = ModelFactory.createDefaultModel();
         setPrefixes();
     }
 
+    /**
+     * read RDF from String
+     *
+     * @param rdf
+     * @param format
+     * @throws JenaModelException
+     */
     public void readRDF(String rdf, Lang format) throws JenaModelException {
         try {
             RDFDataMgr.read(model, new ByteArrayInputStream(rdf.getBytes()), null, format);
@@ -43,6 +54,12 @@ public class JenaModel {
         }
     }
 
+    /**
+     * read JSON-LD from String
+     *
+     * @param jsonld
+     * @throws JenaModelException
+     */
     public void readJSONLD(String jsonld) throws JenaModelException {
         try {
             RDFDataMgr.read(model, new ByteArrayInputStream(jsonld.getBytes()), null, Lang.JSONLD);
@@ -51,11 +68,24 @@ public class JenaModel {
         }
     }
 
+    /**
+     * set model to existing model
+     *
+     * @param model
+     */
     public void setModel(Model model) {
         this.model = model;
     }
 
-    public void setModelLiteral(String subject, String predicate, String object) throws JenaModelException {
+    /**
+     * set triple with literal as object
+     *
+     * @param subject
+     * @param predicate
+     * @param object
+     * @throws JenaModelException
+     */
+    public void setLiteral(String subject, String predicate, String object) throws JenaModelException {
         try {
             Resource s = model.createResource(subject);
             Property p = model.createProperty(predicate);
@@ -66,7 +96,16 @@ public class JenaModel {
         }
     }
 
-    public void setModelLiteralLanguage(String subject, String predicate, String object, String lang) throws JenaModelException {
+    /**
+     * set triple with literal and language as object
+     *
+     * @param subject
+     * @param predicate
+     * @param object
+     * @param lang
+     * @throws JenaModelException
+     */
+    public void setLiteralWithLanguage(String subject, String predicate, String object, String lang) throws JenaModelException {
         try {
             Resource s = model.createResource(subject);
             Property p = model.createProperty(predicate);
@@ -77,7 +116,15 @@ public class JenaModel {
         }
     }
 
-    public void setModelURI(String subject, String predicate, String object) throws JenaModelException {
+    /**
+     * set triple with uri as object
+     *
+     * @param subject
+     * @param predicate
+     * @param object
+     * @throws JenaModelException
+     */
+    public void setURI(String subject, String predicate, String object) throws JenaModelException {
         try {
             Resource s = model.createResource(subject);
             Property p = model.createProperty(predicate);
@@ -88,37 +135,47 @@ public class JenaModel {
         }
     }
 
-    public void setModelTriple(String subject, String predicate, String object) throws JenaModelException {
+    /**
+     * set triple
+     *
+     * @param subject
+     * @param predicate
+     * @param object
+     * @throws JenaModelException
+     */
+    public void setTriple(String subject, String predicate, String object) throws JenaModelException {
         try {
             if (object.startsWith("http://") || object.contains("mailto")) {
-                setModelURI(subject, predicate, object);
+                setURI(subject, predicate, object);
             } else if (object.contains("@")) {
                 String literalLanguage[] = object.split("@");
-                setModelLiteralLanguage(subject, predicate, literalLanguage[0].replaceAll("\"", ""), literalLanguage[1]);
+                setLiteralWithLanguage(subject, predicate, literalLanguage[0].replaceAll("\"", ""), literalLanguage[1]);
             } else {
-                setModelLiteral(subject, predicate, object.replaceAll("\"", ""));
+                setLiteral(subject, predicate, object.replaceAll("\"", ""));
             }
         } catch (Exception e) {
             throw new JenaModelException(e.getMessage());
         }
     }
 
-    public Model getModelObject() {
+    /**
+     * get model
+     *
+     * @return
+     */
+    public Model getModel() {
         return model;
     }
 
-    public String getModel() throws JenaModelException {
-        try {
-            JenaJSONLD.init();
-            ByteArrayOutputStream o = new ByteArrayOutputStream();
-            model.write(o, "RDF/XML");
-            return o.toString("UTF-8");
-        } catch (Exception e) {
-            throw new JenaModelException(e.getMessage());
-        }
-    }
-
-    public String getModel(String format) throws UnsupportedEncodingException, JenaModelException {
+    /**
+     * get model as RDF in different formats
+     *
+     * @param format
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws JenaModelException
+     */
+    public String getModelAsRDFFormatedString(String format) throws UnsupportedEncodingException, JenaModelException {
         // https://jena.apache.org/documentation/io/rdf-output.html#jena_model_write_formats
         try {
             JenaJSONLD.init();
@@ -130,6 +187,30 @@ public class JenaModel {
         }
     }
 
+    /**
+     * get model as RDF/XML
+     *
+     * @return
+     * @throws JenaModelException
+     */
+    public String getModelAsRDFXML() throws JenaModelException {
+        try {
+            JenaJSONLD.init();
+            ByteArrayOutputStream o = new ByteArrayOutputStream();
+            model.write(o, "RDF/XML");
+            return o.toString("UTF-8");
+        } catch (Exception e) {
+            throw new JenaModelException(e.getMessage());
+        }
+    }
+
+    /**
+     * get model as JSON-LD
+     *
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws JenaModelException
+     */
     public String getModelAsJSONLD() throws UnsupportedEncodingException, JenaModelException {
         try {
             JenaJSONLD.init();
@@ -141,6 +222,14 @@ public class JenaModel {
         }
     }
 
+    /**
+     * get JSON-LD @context by url
+     *
+     * @param url
+     * @return
+     * @throws IOException
+     * @throws JenaModelException
+     */
     public static JSONObject getJSONLDContextByURL(String url) throws IOException, JenaModelException {
         try {
             // read GeoJSON-LD Context
@@ -165,6 +254,11 @@ public class JenaModel {
         }
     }
 
+    /**
+     * set model prefixes from prefixes.csv
+     *
+     * @throws JenaModelException
+     */
     private void setPrefixes() throws JenaModelException {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("prefixes.csv").getFile());

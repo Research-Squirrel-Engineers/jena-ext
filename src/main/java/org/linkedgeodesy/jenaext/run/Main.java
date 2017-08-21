@@ -11,7 +11,6 @@ import org.linkedgeodesy.jenaext.model.JenaModel;
 
 /**
  * main class for running
- *
  */
 public class Main {
 
@@ -32,10 +31,10 @@ public class Main {
             JenaModel jm = new JenaModel();
             JenaModel jm2 = new JenaModel();
             jm.readRDF(turtle, Lang.TURTLE);
-            o.add(jm.getModel("JSON-LD"));
-            String turtleld = jm.getModel("JSON-LD");
+            o.add(jm.getModelAsRDFFormatedString("JSON-LD"));
+            String turtleld = jm.getModelAsRDFFormatedString("JSON-LD");
             jm2.readRDF(turtleld, Lang.JSONLD);
-            o.add(jm2.getModel());
+            o.add(jm2.getModelAsRDFXML());
             // test with ls json-ld
             JenaModel jm3 = new JenaModel();
             String ld = "{\n"
@@ -116,15 +115,15 @@ public class Main {
                     + "  }\n"
                     + "}";
             jm3.readJSONLD(ld);
-            o.add(jm3.getModel("N-Triples"));
+            o.add(jm3.getModelAsRDFFormatedString("N-Triples"));
             // context json objects
             o.add(JenaModel.getJSONLDContextByURL("https://raw.githubusercontent.com/geojson/geojson-ld/gh-pages/geojson-context.jsonld").toJSONString());
             o.add(JenaModel.getJSONLDContextByURL("https://raw.githubusercontent.com/florianthiery/geojson-ld-lg/master/geojson-context-lg.jsonld").toJSONString());
             // write output to file
             FileOutput.writeFile(o);
         } catch (Exception e) {
-            o.add(Logging.getMessageJSON(e, "org.linkedgeodesy.jenaext.run.Main"));
-            System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.jenaext.run.Main"));
+            System.out.println(Logging.getMessageJSON(e, "org.linkedgeodesy.jenaext.run.Main").toJSONString());
+            o.add(Logging.getMessageJSON(e, "org.linkedgeodesy.jenaext.run.Main").toJSONString());
             FileOutput.writeFile(o);
         }
     }
