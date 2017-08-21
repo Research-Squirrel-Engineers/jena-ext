@@ -45,6 +45,8 @@ Look at [GitHub Pages](https://linkedgeodesy.github.io/jena-ext/) for the latest
 
 Look at [Gist](https://gist.github.com/florianthiery/0f8c0c015555939c96eb13428bbf1cd4) hints for `Configurations for JAVA projects using Maven`.
 
+For loading your prefixes please add the [prefixes.csv](https://github.com/linkedgeodesy/jena-ext/blob/master/src/main/resources/prefixes.csv) into your `resources` folder and modify it.
+
 ## Dependency Information
 
 *latest stabile version: 60bbd0639c*
