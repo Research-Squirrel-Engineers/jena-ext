@@ -17,7 +17,7 @@ The code is developed using and tested with:
 
 The `jena-ext` library is build using `maven` as JAR-file.
 
-For details have a look at [pom.xml](https://github.com/linkedgeodesy/javaext/blob/master/javaext/pom.xml).
+For details have a look at [pom.xml](https://github.com/linkedgeodesy/jena-ext/blob/master/pom.xml).
 
 [Download](http://maven.apache.org/download.cgi) and  [install](https://www.mkyong.com/maven/how-to-install-maven-in-windows/) `maven` and [run](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) it.
 
@@ -25,7 +25,7 @@ For details have a look at [pom.xml](https://github.com/linkedgeodesy/javaext/bl
 
 Download and install `maven`.
 
-Run git clone `https://github.com/linkedgeodesy/javaext.git` to create a local copy of this repository.
+Run git clone `https://github.com/linkedgeodesy/jena-ext.git` to create a local copy of this repository.
 
 Run `mvn install` to install all required dependencies.
 
