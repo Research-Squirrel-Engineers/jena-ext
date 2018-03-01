@@ -3,7 +3,7 @@
 An extension library for Apache Jena
 
 [![build](https://api.travis-ci.org/linkedgeodesy/jena-ext.svg?branch=master)](https://travis-ci.org/linkedgeodesy/jena-ext)
-[![release](https://img.shields.io/github/release/linkedgeodesy/jena-ext.svg)](https://github.com/linkedgeodesy/jena-ext/releases/latest) ![java](https://img.shields.io/badge/jdk-1.8-red.svg) ![maven](https://img.shields.io/badge/maven-3.5.0-red.svg) ![output](https://img.shields.io/badge/output-jar-red.svg) ![license](https://img.shields.io/github/license/linkedgeodesy/jena-ext.svg)
+[![release](https://img.shields.io/github/release/linkedgeodesy/jena-ext.svg)](https://github.com/linkedgeodesy/jena-ext/releases/latest) ![java](https://img.shields.io/badge/jdk-1.8-red.svg) ![maven](https://img.shields.io/badge/maven-3.5.0-red.svg) ![output](https://img.shields.io/badge/output-jar-red.svg) [![license](https://img.shields.io/github/license/linkedgeodesy/jena-ext.svg)](LICENSE)
 
 ## Prerequisites
 
