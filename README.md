@@ -99,7 +99,7 @@ libraryDependencies += "com.github.linkedgeodesy" % "jena-ext" % "${version}"
 
 ## Developers and License Holder
 
-Florian Thiery<sup>1</sup>, i3mainz<sup>2</sup>, RGZM<sup>2</sup>
+Florian Thiery<sup>1</sup>, i3mainz<sup>2</sup>, RGZM<sup>3</sup>
 
 <sup>1</sup> Florian Thiery M.Sc., [`ORCID:0000-0002-3246-3531`](http://orcid.org/0000-0002-3246-3531)
 
