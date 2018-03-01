@@ -45,7 +45,7 @@ Look at [GitHub Pages](https://linkedgeodesy.github.io/jena-ext/) for the latest
 
 Look at [Gist](https://gist.github.com/florianthiery/0f8c0c015555939c96eb13428bbf1cd4) hints for `Configurations for JAVA projects using Maven`.
 
-For loading your prefixes please add the [prefixes.csv](https://github.com/linkedgeodesy/jena-ext/blob/master/src/main/resources/prefixes.csv) into your [`resources`](https://github.com/linkedgeodesy/jena-ext/tree/master/src/main/resources) folder and modify it.
+For loading your prefixes please add the [`prefixes.csv`](https://github.com/linkedgeodesy/jena-ext/blob/master/src/main/resources/prefixes.csv) into your [`resources`](https://github.com/linkedgeodesy/jena-ext/tree/master/src/main/resources) folder and modify it.
 
 ## Dependency Information
 
@@ -97,6 +97,14 @@ libraryDependencies += "com.github.linkedgeodesy" % "jena-ext" % "${version}"
 :dependencies [[com.github.linkedgeodesy/jena-ext "${version}"]]
 ```
 
-## Repo Developers
+## Developers and License Holder
 
-Florian Thiery M.Sc. (i3mainz, RGZM)
+Florian Thiery<sup>1</sup>, i3mainz<sup>2</sup>, RGZM<sup>2</sup>
+
+<sup>1</sup> Florian Thiery M.Sc., [`ORCID:0000-0002-3246-3531`](http://orcid.org/0000-0002-3246-3531)
+
+<sup>2</sup> i3mainz - Institute for Spatial Information and Surveying Technology at School of Technology, Hochschule Mainz
+University of Applied Sciences ([`Website`](http://i3mainz.hs-mainz.de/))
+
+<sup>3</sup> Römisch-Germanisches Zentralmuseum Mainz, Leibniz-Forschungsinstitut für Archäologie
+University of Applied Sciences ([`Website`](http://rgzm.de/))
