@@ -205,6 +205,40 @@ public class JenaModel {
     }
 
     /**
+     * get model as TURTLE
+     *
+     * @return
+     * @throws JenaModelException
+     */
+    public String getModelAsTURTLE() throws JenaModelException {
+        try {
+            JenaJSONLD.init();
+            ByteArrayOutputStream o = new ByteArrayOutputStream();
+            model.write(o, "TURTLE");
+            return o.toString("UTF-8");
+        } catch (Exception e) {
+            throw new JenaModelException(e.getMessage());
+        }
+    }
+
+    /**
+     * get model as N-TRIPLES
+     *
+     * @return
+     * @throws JenaModelException
+     */
+    public String getModelAsNTRIPLES() throws JenaModelException {
+        try {
+            JenaJSONLD.init();
+            ByteArrayOutputStream o = new ByteArrayOutputStream();
+            model.write(o, "N-TRIPLES");
+            return o.toString("UTF-8");
+        } catch (Exception e) {
+            throw new JenaModelException(e.getMessage());
+        }
+    }
+
+    /**
      * get model as JSON-LD
      *
      * @return
@@ -216,6 +250,40 @@ public class JenaModel {
             JenaJSONLD.init();
             ByteArrayOutputStream o = new ByteArrayOutputStream();
             model.write(o, "JSON-LD");
+            return o.toString("UTF-8");
+        } catch (Exception e) {
+            throw new JenaModelException(e.getMessage());
+        }
+    }
+
+    /**
+     * get model as N3
+     *
+     * @return
+     * @throws JenaModelException
+     */
+    public String getModelAsN3() throws JenaModelException {
+        try {
+            JenaJSONLD.init();
+            ByteArrayOutputStream o = new ByteArrayOutputStream();
+            model.write(o, "N3");
+            return o.toString("UTF-8");
+        } catch (Exception e) {
+            throw new JenaModelException(e.getMessage());
+        }
+    }
+
+    /**
+     * get model as N3
+     *
+     * @return
+     * @throws JenaModelException
+     */
+    public String getModelAsRDFJSON() throws JenaModelException {
+        try {
+            JenaJSONLD.init();
+            ByteArrayOutputStream o = new ByteArrayOutputStream();
+            model.write(o, "RDF/JSON");
             return o.toString("UTF-8");
         } catch (Exception e) {
             throw new JenaModelException(e.getMessage());
