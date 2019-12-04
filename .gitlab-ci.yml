@@ -22,7 +22,7 @@ build:
 pages:
   stage: deploy
   script:
-  - cp docs/* public/
+  - cp -r docs/* public/
   artifacts:
     paths:
     - public
