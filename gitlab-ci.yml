@@ -1,0 +1,27 @@
+include:
+  - template: SAST.gitlab-ci.yml
+  - template: Dependency-Scanning.gitlab-ci.yml
+  - template: License-Management.gitlab-ci.yml
+
+image: docker:git
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+   - "mvn clean install -Dmaven.test.skip=true"
+  artifacts:
+    when: on_success
+    paths:
+    - target/*.jar
+
+pages:
+  stage: deploy
+  script:
+  - cp docs/* public/
+  artifacts:
+    paths:
+    - public
