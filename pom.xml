@@ -158,20 +158,20 @@
 			</plugin>
 		</plugins>
 	</reporting>
-<repositories>
-  <repository>
-    <id>gitlab-maven</id>
-    <url>https://gitlab.com/api/v4/projects/${env.CI_PROJECT_ID}/packages/maven</url>
-  </repository>
-</repositories>
-<distributionManagement>
-  <repository>
-    <id>gitlab-maven</id>
-    <url>https://gitlab.com/api/v4/projects/${env.CI_PROJECT_ID}/packages/maven</url>
-  </repository>
-  <snapshotRepository>
-    <id>gitlab-maven</id>
-    <url>https://gitlab.com/api/v4/projects/${env.CI_PROJECT_ID}/packages/maven</url>
-  </snapshotRepository>
-</distributionManagement>
+ <repositories>
+    <repository>
+      <id>gitlab-maven</id>
+      <url>https://gitlab.rlp.net/api/v4/projects/8097/packages/maven</url>
+    </repository>
+  </repositories>
+  <distributionManagement>
+    <repository>
+      <id>gitlab-maven</id>
+      <url>https://gitlab.rlp.net/api/v4/projects/8097/packages/maven</url>
+    </repository>
+    <snapshotRepository>
+      <id>gitlab-maven</id>
+      <url>https://gitlab.rlp.net/api/v4/projects/8097/packages/maven</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
