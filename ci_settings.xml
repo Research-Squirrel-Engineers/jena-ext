@@ -1,13 +1,12 @@
-<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
+<settings xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/settings-1.0.0.xsd">
   <servers>
     <server>
       <id>gitlab-maven</id>
       <configuration>
         <httpHeaders>
           <property>
-            <name>Private-Token</name>
-            <value>tj8XFVcdfG2RbE8aisF6</value>
+            <name>Job-Token</name>
+            <value>${env.CI_JOB_TOKEN}</value>
           </property>
         </httpHeaders>
       </configuration>
