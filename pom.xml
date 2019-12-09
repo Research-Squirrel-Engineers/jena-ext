@@ -158,7 +158,6 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	<repositories>
 <repositories>
   <repository>
     <id>gitlab-maven</id>
