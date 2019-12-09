@@ -5,7 +5,7 @@
       <configuration>
         <httpHeaders>
           <property>
-            <name>maven</name>
+            <name>Private-Token</name>
             <value>tj8XFVcdfG2RbE8aisF6</value>
           </property>
         </httpHeaders>
