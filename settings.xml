@@ -5,8 +5,8 @@
       <configuration>
         <httpHeaders>
           <property>
-            <name>Job-Token</name>
-            <value>${env.CI_JOB_TOKEN}</value>
+            <name>maven</name>
+            <value>tj8XFVcdfG2RbE8aisF6</value>
           </property>
         </httpHeaders>
       </configuration>
